@@ -92,25 +92,28 @@ For each project, use the Azure DevOps REST API to:
 - Display avatars for build requesters and PR authors if available
 - Make the dashboard easily configurable for other environments (e.g., "Test", "Prod") by changing the filter
 
----
+----------
+Remove unused files and folderes from this project
+-----------
+
+Create a roll back point here so after my demo i will move to this state of application. Then Create demo data for 3-4 projects for different pipeline definations 
 
 You can use these prompts with GitHub Copilot or any AI coding assistant to quickly scaffold and style a professional Azure DevOps dashboard React app with all required features and configurations.
 
+------------ TYped Prompts--------------
 
-
-
-Create a react App named 'AzureDeploymentInfoApp' using node.js server
+Create a react App named 'BuildBoard-App' using node.js server use the same exsisting buildboard-app to create src and public folders and packages
 
 Project Details : Need a dashboard page with tiles & a configuration file so that we can add multiple projects later which contains below information
 No Need of server. Just use Azure API Pipeline url:  
 
 Tile - 1
 Show Below deatils in Each tile
-Project Name: Artemis Web
+Project Name: TESTApp Web
 Last deployment date & time
 List of Last 10 PR which are lastest merge in the build
 
-when page loaded create a <token> using window login credinatls and email address: sravan.gampa@ey.com
+when page loaded create a <token> using window login credinatls and email address: 
 
 using const headers = {
   Authorization:  <token>,
@@ -127,7 +130,7 @@ Project Name:
 
 Tile - 2
 Show Below deatils in Each tile
-Project Name: Artemis API
+Project Name: TESTApp API
 Last deployment date & time
 List of Last 10 PR which are lastest merge in the build
 

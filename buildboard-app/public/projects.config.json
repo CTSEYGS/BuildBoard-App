@@ -1,0 +1,9 @@
+[
+  {
+    "organization": "myorg",
+    "project": "myproject",
+    "definitionId": 123,
+    "azurePipelineUrl": "https://dev.azure.com/myorg/myproject/_build?definitionId=123",
+    "environment": "Dev"
+  }
+]
