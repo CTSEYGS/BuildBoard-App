@@ -95,3 +95,39 @@ For each project, use the Azure DevOps REST API to:
 ---
 
 You can use these prompts with GitHub Copilot or any AI coding assistant to quickly scaffold and style a professional Azure DevOps dashboard React app with all required features and configurations.
+
+
+
+
+Create a react App named 'AzureDeploymentInfoApp' using node.js server
+
+Project Details : Need a dashboard page with tiles & a configuration file so that we can add multiple projects later which contains below information
+No Need of server. Just use Azure API Pipeline url:  
+
+Tile - 1
+Show Below deatils in Each tile
+Project Name: Artemis Web
+Last deployment date & time
+List of Last 10 PR which are lastest merge in the build
+
+when page loaded create a <token> using window login credinatls and email address: sravan.gampa@ey.com
+
+using const headers = {
+  Authorization:  <token>,
+  'Content-Type': 'application/json',
+};
+
+
+Need prameter for above URL
+Base url: https://dev.azure.com/ 
+For definitionId: 3795
+Organization Name: 
+Project Name: 
+
+
+Tile - 2
+Show Below deatils in Each tile
+Project Name: Artemis API
+Last deployment date & time
+List of Last 10 PR which are lastest merge in the build
+
