@@ -1,136 +1,69 @@
-# GitHub Copilot Prompts for Azure DevOps React Dashboard
+### 1. Project Setup
+- Use `create-react-app` to bootstrap the project.
+- Organize the project with a `public` folder for static assets and a `src` folder for all React code.
+- Place a `projects.config.json` in the `public` folder with an array of project configs, each containing:
+  - `organization`, `project`, `definitionId`, `azurePipelineUrl`, `environment`.
+  - Include at least 2 dummy configs for each environment (Dev, Test, Prod, UAT, DEV5, etc.).
 
-## 1. Project Setup
+### 2. Main Dashboard UI
+- Main component: `Dashboard.js` in `src/components/`.
+- Fetch and filter projects from `projects.config.json` based on selected environment.
+- Display a header with the title: `Build Board - Azure DevOps Dashboard` and an environment dropdown.
+- Show a grid of project tiles, each displaying:
+  - Project name, organization, definition ID, environment
+  - Azure Pipeline link
+  - Latest build info (number, status, requested by, times, etc.)
+  - Last 10 PRs/commits (with author, message, timestamp, commit link)
+- Include a refresh button and a user avatar in the header.
 
-Create a new React app using Create React App. Set up the project structure with a `src` folder for components and a `public` folder for static assets. Add a `projects.config.json` file in the `public` folder to hold Azure DevOps project metadata (organization, project, definitionId, azurePipelineUrl, environment).
+### 3. Styling
+- Use modern, clean CSS (see `index.css` and inline styles in `Dashboard.js`).
+- Responsive grid layout for project tiles.
+- Consistent color palette (blues, whites, subtle shadows).
 
----
-
-## 2. Dashboard Component
-
-Build a `Dashboard.js` React component that:
-- Loads the project list from `public/projects.config.json` and filters for environment "Dev".
-- For each project, fetches the latest build from Azure DevOps REST API using the provided organization, project, and definitionId.
-- For the latest build, fetches the last 10 merged PRs/commits.
-- Displays each project in a 3x3 CSS grid tile layout, with each tile showing:
-  - Project name (with a professional colored background)
-  - Pipeline URL (as a clickable link)
-  - Definition ID, Organization, Project
-  - Latest build details: build number, status, environment, requested by (with avatar), start time, queue time, last changed, build link, source version, source branch
-  - Expandable/collapsible list of the last 10 merged PRs/commits, each showing message, author (with avatar), commit ID, timestamp, and commit link if available
-- All tiles should have the same width and height, with no overlaps and consistent gaps.
-- The dashboard should be fully responsive and visually professional.
-
----
-
-## 3. Header and User Experience
-
-Add a sticky header to the dashboard with:
-- The dashboard title centered
-- A refresh button on the top right (before the user avatar) to reload all data
-- A user avatar placeholder on the top right
-- Ensure the header remains visible on scroll
-
----
-
-## 4. Styling
-
-Use inline styles or CSS modules to:
-- Make the grid layout responsive (3 columns, 2-3 rows, with gaps)
-- Give each tile a white background, rounded corners, subtle box-shadow, and padding
-- Style the project name with a modern gradient background, rounded top corners, bold font, and professional color palette
-- Style tables and text for clarity and readability, ensuring all content fits without overflow
-- Style the refresh button and avatar for a modern, clickable look
-
----
-
-## 5. Configuration
-
-Define a `public/projects.config.json` file with an array of project objects, each containing:
-- organization
-- project
-- definitionId
-- azurePipelineUrl
-- environment
-Example:
+### 4. Config Example (`public/projects.config.json`)
+```
 [
-  {
-    "organization": "myorg",
-    "project": "myproject",
-    "definitionId": 123,
-    "azurePipelineUrl": "https://dev.azure.com/myorg/myproject/_build?definitionId=123",
-    "environment": "Dev"
-  }
+  { "organization": "demo-org", "project": "TESTApp Web", "definitionId": 3795, "azurePipelineUrl": "https://dev.azure.com/demo-org/TESTAppWeb/_build?definitionId=3795", "environment": "Dev" },
+  { "organization": "demo-org", "project": "Dummy Dev Project 2", "definitionId": 4004, "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyDev2/_build?definitionId=4004", "environment": "Dev" },
+  { "organization": "demo-org", "project": "Dummy Test Project 1", "definitionId": 4005, "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyTest1/_build?definitionId=4005", "environment": "Test" },
+  { "organization": "demo-org", "project": "Dummy Test Project 2", "definitionId": 4006, "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyTest2/_build?definitionId=4006", "environment": "Test" },
+  { "organization": "demo-org", "project": "Dummy Prod Project 1", "definitionId": 4007, "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyProd1/_build?definitionId=4007", "environment": "Prod" },
+  { "organization": "demo-org", "project": "Dummy Prod Project 2", "definitionId": 4008, "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyProd2/_build?definitionId=4008", "environment": "Prod" },
+  { "organization": "demo-org", "project": "Dummy UAT Project", "definitionId": 4001, "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyUAT/_build?definitionId=4001", "environment": "UAT" },
+  { "organization": "demo-org", "project": "Dummy UAT Project 2", "definitionId": 4002, "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyUAT2/_build?definitionId=4002", "environment": "UAT" },
+  { "organization": "demo-org", "project": "Dummy DEV5 Project 1", "definitionId": 4010, "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyDEV5/_build?definitionId=4010", "environment": "DEV5" },
+  { "organization": "demo-org", "project": "Dummy DEV5 Project 2", "definitionId": 4011, "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyDEV52/_build?definitionId=4011", "environment": "DEV5" }
 ]
+```
+
+### 5. Environment Filtering
+- The environment dropdown should be auto-populated from the config file.
+- Changing the environment should filter the displayed projects.
+
+### 6. Azure DevOps Integration
+- For each project, fetch the latest build and last 10 PRs/commits using Azure DevOps REST APIs.
+- Use a Personal Access Token (PAT) for authentication (read from an environment variable or config).
+- Show loading and error states.
+
+### 7. Other Files
+- `index.css`: Contains global styles for the app (background, font, etc.).
+- `index.js`: Entry point, renders the `App` component.
+- `App.js`: Main app wrapper, renders the `Dashboard` component.
+- `README.md`: Project overview and setup instructions.
 
 ---
 
-## 6. Azure DevOps API Integration
-
-For each project, use the Azure DevOps REST API to:
-- Fetch the latest build for the master branch and the given definitionId
-- Fetch the last 100 changes for that build, then display the latest 10 by timestamp
-- Use a Personal Access Token (PAT) for authentication, passed in the Authorization header as Basic auth
-- Handle loading and error states gracefully
+## Deliverables
+- All source code and configs as described above.
+- A working, filterable dashboard UI as shown in the sample code.
+- Dummy configs for all environments for easy testing.
+- Clean, modern CSS and responsive layout.
 
 ---
 
-## 7. Professional UI/UX
-
-- Ensure all tiles and header elements are visually aligned and spaced
-- Use professional color schemes (blues, whites, subtle grays)
-- Make the dashboard accessible (aria-labels, alt text for avatars)
-- Ensure all links open in a new tab with rel="noopener noreferrer"
-- Use tooltips for buttons and avatars
-
----
-
-## 8. Optional Enhancements
-
-- Allow the user to expand/collapse the PR list for each project tile
-- Show a loading indicator while fetching data
-- Display avatars for build requesters and PR authors if available
-- Make the dashboard easily configurable for other environments (e.g., "Test", "Prod") by changing the filter
-
-----------
-Remove unused files and folderes from this project
------------
-
-Create a roll back point here so after my demo i will move to this state of application. Then Create demo data for 3-4 projects for different pipeline definations 
-
-You can use these prompts with GitHub Copilot or any AI coding assistant to quickly scaffold and style a professional Azure DevOps dashboard React app with all required features and configurations.
-
------------- TYped Prompts--------------
-
-Create a react App named 'BuildBoard-App' using node.js server use the same exsisting buildboard-app to create src and public folders and packages
-
-Project Details : Need a dashboard page with tiles & a configuration file so that we can add multiple projects later which contains below information
-No Need of server. Just use Azure API Pipeline url:  
-
-Tile - 1
-Show Below deatils in Each tile
-Project Name: TESTApp Web
-Last deployment date & time
-List of Last 10 PR which are lastest merge in the build
-
-when page loaded create a <token> using window login credinatls and email address: 
-
-using const headers = {
-  Authorization:  <token>,
-  'Content-Type': 'application/json',
-};
-
-
-Need prameter for above URL
-Base url: https://dev.azure.com/ 
-For definitionId: 3795
-Organization Name: 
-Project Name: 
-
-
-Tile - 2
-Show Below deatils in Each tile
-Project Name: TESTApp API
-Last deployment date & time
-List of Last 10 PR which are lastest merge in the build
-
+## Notes
+- Do not hardcode secrets or PATs in the repo.
+- Use environment variables for sensitive data.
+- Ensure accessibility for dropdowns, buttons, and links.
+- Use semantic HTML and ARIA labels where appropriate.

@@ -246,7 +246,7 @@ const Dashboard = () => {
     <div>
       <header style={headerStyle}>
         <div style={{ width: 120 }} />
-        <div style={titleStyle}>Azure DevOps Dashboard</div>
+        <div style={titleStyle}>Build Board - Dashboard</div>
         <div style={rightStyle}>
           <select
             value={environment}
