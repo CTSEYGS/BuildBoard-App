@@ -27,5 +27,62 @@
     "definitionId": 3798,
     "azurePipelineUrl": "https://dev.azure.com/demo-org/TESTAppBackend/_build?definitionId=3798",
     "environment": "Dev"
+  },
+  {
+    "organization": "demo-org",
+    "project": "Dummy UAT Project",
+    "definitionId": 4001,
+    "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyUAT/_build?definitionId=4001",
+    "environment": "UAT"
+  }
+  ,
+  {
+    "organization": "demo-org",
+    "project": "Dummy UAT Project 2",
+    "definitionId": 4002,
+    "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyUAT2/_build?definitionId=4002",
+    "environment": "UAT"
+  },
+  {
+    "organization": "demo-org",
+    "project": "Dummy Dev Project 1",
+    "definitionId": 4003,
+    "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyDev1/_build?definitionId=4003",
+    "environment": "Dev"
+  },
+  {
+    "organization": "demo-org",
+    "project": "Dummy Dev Project 2",
+    "definitionId": 4004,
+    "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyDev2/_build?definitionId=4004",
+    "environment": "Dev"
+  },
+  {
+    "organization": "demo-org",
+    "project": "Dummy Test Project 1",
+    "definitionId": 4005,
+    "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyTest1/_build?definitionId=4005",
+    "environment": "Test"
+  },
+  {
+    "organization": "demo-org",
+    "project": "Dummy Test Project 2",
+    "definitionId": 4006,
+    "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyTest2/_build?definitionId=4006",
+    "environment": "Test"
+  },
+  {
+    "organization": "demo-org",
+    "project": "Dummy Prod Project 1",
+    "definitionId": 4007,
+    "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyProd1/_build?definitionId=4007",
+    "environment": "Prod"
+  },
+  {
+    "organization": "demo-org",
+    "project": "Dummy Prod Project 2",
+    "definitionId": 4008,
+    "azurePipelineUrl": "https://dev.azure.com/demo-org/DummyProd2/_build?definitionId=4008",
+    "environment": "Prod"
   }
 ]
